@@ -218,9 +218,7 @@ window.addEventListener('scroll', () => {
         }
     })
 })
-
-   
-    const contactForm = document.getElementById('contactForm');
+const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -244,63 +242,29 @@ window.addEventListener('scroll', () => {
             }
         });
     }
-    
-    // فورم النيوزليتر
-    const subscribeForm = document.getElementById('subscribeForm');
-    if (subscribeForm) {
-        subscribeForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const formData = new FormData(subscribeForm);
+   
+// فورم النيوزليتر
+const subscribeForm = document.getElementById('subscribeForm');
+if (subscribeForm) {
+    subscribeForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(subscribeForm);
+        
+        try {
+            const response = await fetch('https://formspree.io/f/xjgjnneg', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
             
-            try {
-                const response = await fetch('https://formspree.io/f/xjgjnneg', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-                
-                if (response.ok) {
-                    alert('✅ Thanks for subscribing!');
-                    subscribeForm.reset();
-                } else {
-                    alert('❌ Something went wrong. Please try again.');
-                }
-            } catch (error) {
-                alert('❌ Network error. Please check your connection.');
+            if (response.ok) {
+                alert('✅ Thanks for subscribing!');
+                subscribeForm.reset();
+            } else {
+                alert('❌ Something went wrong. Please try again.');
             }
-        });
-    }
-
-    // const subscribeForm = document.getElementById('subscribeForm')
-
-    // subscribeForm.addEventListener('submit', async function(e) {
-    //     e.preventDefault()
-        
-    //     const formData = new FormData(subscribeForm)
-        
-    //     formData.append('form_type', 'newsletter')
-        
-    //     try {
-    //         const response = await fetch('https://formspree.io/f/xjgjnneg', {
-    //             method: 'POST',
-    //             body: formData,
-    //             headers: {
-    //                 'Accept': 'application/json'
-    //             }
-    //         })
-            
-    //         if (response.ok) {
-    //             alert(' Thanks for subscribing!')
-    //             subscribeForm.reset()
-    //         } else {
-    //             const data = await response.json()
-    //             if (data.errors) {
-    //                 alert( data.errors.map(error => error.message).join(', '))
-    //             } else {
-    //                 alert(' Something went wrong. Please try again.')
-    //             }
-    //         }
-    //     } catch (error) {
-    //         alert(' Network error. Please check your connection.')
-    //     }
-    // })
+        } catch (error) {
+            alert('❌ Network error. Please check your connection.');
+        }
+    });
+}
