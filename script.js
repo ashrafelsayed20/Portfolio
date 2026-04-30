@@ -218,30 +218,31 @@ window.addEventListener('scroll', () => {
         }
     })
 })
-// const contactForm = document.getElementById('contactForm');
-//     if (contactForm) {
-//         contactForm.addEventListener('submit', async function(e) {
-//             e.preventDefault();
-//             const formData = new FormData(contactForm);
+const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();  // الخط ده هو اللي بيمنع التحويل
+            const formData = new FormData(contactForm);
             
-//             try {
-//                 const response = await fetch('https://formspree.io/f/xykoykak', {
-//                     method: 'POST',
-//                     body: formData,
-//                     headers: { 'Accept': 'application/json' }
-//                 });
+            try {
+                const response = await fetch('https://formspree.io/f/xykoykak', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
                 
-//                 if (response.ok) {
-//                     alert('✅ Message sent successfully!');
-//                     contactForm.reset();
-//                 } else {
-//                     alert('❌ Something went wrong. Please try again.');
-//                 }
-//             } catch (error) {
-//                 alert('❌ Network error. Please check your connection.');
-//             }
-//         });
-//     }
+                if (response.ok) {
+                    alert('✅ Message sent successfully!');
+                    contactForm.reset();
+                    // ❌ متحطش هنا أي سطر فيه window.location
+                } else {
+                    alert('❌ Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                alert('❌ Network error. Please check your connection.');
+            }
+        });
+    }
    
 // // فورم النيوزليتر
 // const subscribeForm = document.getElementById('subscribeForm');
