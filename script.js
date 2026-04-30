@@ -234,8 +234,7 @@ const contactForm = document.getElementById('contactForm');
                 if (response.ok) {
                     alert('✅ Message sent successfully!');
                     contactForm.reset();
-                } else {
-                    alert('❌ Something went wrong. Please try again.');
+                    // window.location.href = "https://ashrafelsayed20.github.io";  // يرجّع للصفحة الرئيسية
                 }
             } catch (error) {
                 alert('❌ Network error. Please check your connection.');
@@ -244,27 +243,27 @@ const contactForm = document.getElementById('contactForm');
     }
    
 // // فورم النيوزليتر
-// const subscribeForm = document.getElementById('subscribeForm');
-// if (subscribeForm) {
-//     subscribeForm.addEventListener('submit', async function(e) {
-//         e.preventDefault();
-//         const formData = new FormData(subscribeForm);
+const subscribeForm = document.getElementById('subscribeForm');
+if (subscribeForm) {
+    subscribeForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(subscribeForm);
         
-//         try {
-//             const response = await fetch('https://formspree.io/f/xrejgevj', {
-//                 method: 'POST',
-//                 body: formData,
-//                 headers: { 'Accept': 'application/json' }
-//             });
+        try {
+            const response = await fetch('https://formspree.io/f/xrejgevj', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
             
-//             if (response.ok) {
-//                 alert('✅ Thanks for subscribing!');
-//                 subscribeForm.reset();
-//             } else {
-//                 alert('❌ Something went wrong. Please try again.');
-//             }
-//         } catch (error) {
-//             alert('❌ Network error. Please check your connection.');
-//         }
-//     });
-// }
+            if (response.ok) {
+                alert('✅ Thanks for subscribing!');
+                subscribeForm.reset();
+            } else {
+                alert('❌ Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            alert('❌ Network error. Please check your connection.');
+        }
+    });
+}
