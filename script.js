@@ -16,56 +16,56 @@
         }
 
 // Generate Stars
-const starsContainer = document.getElementById('stars');
-for (let i = 0; i < 150; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.left = Math.random() * 100 + '%';
-    star.style.top = Math.random() * 100 + '%';
-    star.style.width = Math.random() * 3 + 1 + 'px';
-    star.style.height = star.style.width;
-    star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
-    star.style.animationDelay = Math.random() * 5 + 's';
-    starsContainer.appendChild(star);
+const starsContainer = document.getElementById('stars')
+for (let i = 0; i < 150 ;i++) {
+    const star = document.createElement('div')
+    star.className = 'star'
+    star.style.left = Math.random() * 100 + '%'
+    star.style.top = Math.random() * 100 + '%'
+    star.style.width = Math.random() * 3 + 1 + 'px'
+    star.style.height = star.style.width
+    star.style.setProperty('--duration', Math.random() * 3 + 2 + 's')
+    star.style.animationDelay = Math.random() * 5 + 's'
+    starsContainer.appendChild(star)
 }
 
 // Typewriter Effect
-const words = ['React JS', 'Web Developer', 'FrontEnd Developer'];
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typeText = document.getElementById('type-text');
+const words = ['React JS', 'Web Developer', 'FrontEnd Developer']
+let wordIndex = 0
+let charIndex = 0
+let isDeleting = false
+const typeText = document.getElementById('type-text')
 
 function type() {
-    const current = words[wordIndex];
+    const current = words[wordIndex]
 
     if (isDeleting) {
-        typeText.textContent = current.substring(0, charIndex - 1);
-        charIndex--;
+        typeText.textContent = current.substring(0, charIndex - 1)
+        charIndex--
     } else {
-        typeText.textContent = current.substring(0, charIndex + 1);
-        charIndex++;
+        typeText.textContent = current.substring(0, charIndex + 1)
+        charIndex++
     }
 
-    let speed = isDeleting ? 60 : 120;
+    let speed = isDeleting ? 60 : 120
 
     if (!isDeleting && charIndex === current.length) {
-        speed = 2000;
-        isDeleting = true;
+        speed = 2000
+        isDeleting = true
     } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        speed = 500;
+        isDeleting = false
+        wordIndex = (wordIndex + 1) % words.length
+        speed = 500
     }
 
-    setTimeout(type, speed);
+    setTimeout(type, speed)
 }
-type();
+type()
 
 // Mobile Menu
 document.getElementById('mobile-btn').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
-});
+    document.getElementById('mobile-menu').classList.toggle('hidden')
+})
 
 // Skills Data with Animated Rings
 const skillsData = [
@@ -76,19 +76,19 @@ const skillsData = [
     { name: 'HTML5', percent: 95 },
     { name: 'CSS3', percent: 90 },
     { name: 'FrontEnd Development', percent: 90 }
-];
+]
 
-let currentSkillIndex = 0;
+let currentSkillIndex = 0
 
 function renderSkills() {
-    const container = document.getElementById('skills-container');
-    const visible = skillsData.slice(currentSkillIndex, currentSkillIndex + 3);
+    const container = document.getElementById('skills-container')
+    const visible = skillsData.slice(currentSkillIndex, currentSkillIndex + 3)
 
     container.innerHTML = visible.map((skill, idx) => {
-        const radius = 55;
-        const circumference = 2 * Math.PI * radius;
-        const offset = circumference - (skill.percent / 100) * circumference;
-        const uniqueId = `skill-ring-${currentSkillIndex}-${idx}`;
+        const radius = 55
+        const circumference = 2 * Math.PI * radius
+        const offset = circumference - (skill.percent / 100) * circumference
+        const uniqueId = `skill-ring-${currentSkillIndex}-${idx}`
 
         return `
             <div class="flex flex-col items-center group">
@@ -100,7 +100,7 @@ function renderSkills() {
                             stroke-linecap="round" 
                             stroke-dasharray="${circumference}" 
                             stroke-dashoffset="${circumference}"
-                            style="transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);"/>
+                            style="transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1)"/>
                         <defs>
                             <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stop-color="#7c3aed" />
@@ -114,41 +114,41 @@ function renderSkills() {
                 </div>
                 <h3 class="text-white font-semibold text-lg tracking-wide">${skill.name}</h3>
             </div>
-        `;
-    }).join('');
+        `
+    }).join('')
 
     setTimeout(() => {
         visible.forEach((skill, idx) => {
-            const ring = document.getElementById(`skill-ring-${currentSkillIndex}-${idx}`);
+            const ring = document.getElementById(`skill-ring-${currentSkillIndex}-${idx}`)
             if (ring) {
-                const radius = 55;
-                const circumference = 2 * Math.PI * radius;
-                const offset = circumference - (skill.percent / 100) * circumference;
-                ring.style.strokeDashoffset = offset;
+                const radius = 55
+                const circumference = 2 * Math.PI * radius
+                const offset = circumference - (skill.percent / 100) * circumference
+                ring.style.strokeDashoffset = offset
             }
-        });
-    }, 100);
+        })
+    }, 100)
 }
 
-renderSkills();
+renderSkills()
 
 // Skill Carousel Navigation
 function nextSkills() {
     if (currentSkillIndex < skillsData.length - 3) {
-        currentSkillIndex++;
+        currentSkillIndex++
     } else {
-        currentSkillIndex = 0;
+        currentSkillIndex = 0
     }
-    renderSkills();
+    renderSkills()
 }
 
 function prevSkills() {
     if (currentSkillIndex > 0) {
-        currentSkillIndex--;
+        currentSkillIndex--
     } else {
-        currentSkillIndex = skillsData.length - 3;
+        currentSkillIndex = skillsData.length - 3
     }
-    renderSkills();
+    renderSkills()
 }
 
 // Projects Data
@@ -159,11 +159,11 @@ const projectsData = [
     { title: 'Online Shopping', desc: 'JavaScript E-commerce', category: 'html', img: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=500&h=350&fit=crop' },
     { title: 'My Portfolio', desc: 'React JS Personal Website', category: 'js', img: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=500&h=350&fit=crop' },
     { title: 'Password Generator', desc: 'Secure Password Tool', category: 'js', img: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=500&h=350&fit=crop' }
-];
+]
 
 function renderProjects(filter = 'all') {
-    const container = document.getElementById('projects-container');
-    const filtered = filter === 'all' ? projectsData : projectsData.filter(p => p.category === filter);
+    const container = document.getElementById('projects-container')
+    const filtered = filter === 'all' ? projectsData : projectsData.filter(p => p.category === filter)
 
     container.innerHTML = filtered.map(project => `
         <div class="group relative rounded-3xl overflow-hidden bg-slate-900 border border-white/10 hover:border-purple-500/50 transition-all">
@@ -177,44 +177,103 @@ function renderProjects(filter = 'all') {
                 </div>
             </div>
         </div>
-    `).join('');
+    `).join('')
 }
 
-renderProjects();
+renderProjects()
 
 function filterProjects(category) {
     document.querySelectorAll('.project-tab').forEach(tab => {
         if (tab.dataset.filter === category) {
-            tab.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white');
-            tab.classList.remove('text-slate-400');
+            tab.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white')
+            tab.classList.remove('text-slate-400')
         } else {
-            tab.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white');
-            tab.classList.add('text-slate-400');
+            tab.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white')
+            tab.classList.add('text-slate-400')
         }
-    });
-    renderProjects(category);
+    })
+    renderProjects(category)
 }
 
 // Init Lucide
-lucide.createIcons();
+lucide.createIcons()
 
 // Active nav on scroll
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollY = window.scrollY;
+    const sections = document.querySelectorAll('section[id]')
+    const scrollY = window.scrollY
 
     sections.forEach(section => {
-        const height = section.offsetHeight;
-        const top = section.offsetTop - 100;
-        const id = section.getAttribute('id');
+        const height = section.offsetHeight
+        const top = section.offsetTop - 100
+        const id = section.getAttribute('id')
 
         if (scrollY > top && scrollY <= top + height) {
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
+                link.classList.remove('active')
                 if (link.getAttribute('href') === '#' + id) {
-                    link.classList.add('active');
+                    link.classList.add('active')
                 }
-            });
+            })
         }
-    });
-});
+    })
+})
+const form = document.getElementById('contactForm')
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault()
+        
+        const formData = new FormData(form)
+        
+        try {
+            const response = await fetch('https://formspree.io/f/xlgaqqjl', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            
+            if (response.ok) {
+                alert(' Message sent successfully!')
+                form.reset()
+            } else {
+                alert('Something went wrong. Please try again.')
+            }
+        } catch (error) {
+            alert(' Network error. Please check your connection.')
+        }
+    })
+    const subscribeForm = document.getElementById('subscribeForm')
+
+    subscribeForm.addEventListener('submit', async function(e) {
+        e.preventDefault()
+        
+        const formData = new FormData(subscribeForm)
+        
+        formData.append('form_type', 'newsletter')
+        
+        try {
+            const response = await fetch('https://formspree.io/f/xjgjnneg', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            
+            if (response.ok) {
+                alert(' Thanks for subscribing!')
+                subscribeForm.reset()
+            } else {
+                const data = await response.json()
+                if (data.errors) {
+                    alert( data.errors.map(error => error.message).join(', '))
+                } else {
+                    alert(' Something went wrong. Please try again.')
+                }
+            }
+        } catch (error) {
+            alert(' Network error. Please check your connection.')
+        }
+    })
