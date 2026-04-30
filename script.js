@@ -221,7 +221,7 @@ window.addEventListener('scroll', () => {
 const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();  // الخط ده هو اللي بيمنع التحويل
+            // e.preventDefault();  // الخط ده هو اللي بيمنع التحويل
             const formData = new FormData(contactForm);
             
             try {
