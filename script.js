@@ -225,7 +225,7 @@ const contactForm = document.getElementById('contactForm');
             const formData = new FormData(contactForm);
             
             try {
-                const response = await fetch('https://formspree.io/f/xlgaqqjl', {
+                const response = await fetch('https://formspree.io/f/xykoykak', {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
@@ -251,7 +251,7 @@ if (subscribeForm) {
         const formData = new FormData(subscribeForm);
         
         try {
-            const response = await fetch('https://formspree.io/f/xjgjnneg', {
+            const response = await fetch('https://formspree.io/f/xrejgevj', {
                 method: 'POST',
                 body: formData,
                 headers: { 'Accept': 'application/json' }
