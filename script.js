@@ -218,3 +218,53 @@ window.addEventListener('scroll', () => {
         }
     })
 })
+const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch('https://formspree.io/f/xykoykak', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    alert('✅ Message sent successfully!');
+                    contactForm.reset();
+                } else {
+                    alert('❌ Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                alert('❌ Network error. Please check your connection.');
+            }
+        });
+    }
+   
+// فورم النيوزليتر
+const subscribeForm = document.getElementById('subscribeForm');
+if (subscribeForm) {
+    subscribeForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(subscribeForm);
+        
+        try {
+            const response = await fetch('ttps://formspree.io/f/xrejgevj', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (response.ok) {
+                alert('✅ Thanks for subscribing!');
+                subscribeForm.reset();
+            } else {
+                alert('❌ Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            alert('❌ Network error. Please check your connection.');
+        }
+    });
+}
